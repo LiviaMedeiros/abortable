@@ -76,7 +76,7 @@ Decoratorish method, returns Proxy of `fn`. `onAbort` is the same as above: unar
 
 `abortableAsync` accepts as third parameter an `isAbort(err)` function to determine that error is abort. By default, it checks that `err.name === 'AbortError'`.
 
-`inject` accepts object for assigning as first parameter and `isAbort` as second.
+`inject` accepts object for assigning as first parameter, property name as second and `isAbort` as third.
 
 `abort` is unadjustable.
 

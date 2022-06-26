@@ -1,6 +1,6 @@
 {
   "name": "@liviamedeiros/promise-abort",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "syntax sugar for AbortError in promises",
   "type": "module",
   "exports": "./index.mjs",

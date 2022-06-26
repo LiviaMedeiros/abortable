@@ -19,10 +19,10 @@ const abortableAsync = (fn, onAbort, isAbort) => {
 
 const abort = abortable();
 
-const inject = (target = Promise.prototype, isAbort) =>
+const inject = (target = Promise.prototype, name = 'abort', isAbort) =>
   !target.abort && Object.defineProperty(
     target,
-    'abort',
+    name,
     {
       value: abortable(null, isAbort),
       writable: true,
