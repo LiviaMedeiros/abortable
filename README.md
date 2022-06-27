@@ -1,4 +1,4 @@
-[![npm](https://img.shields.io/npm/v/@liviamedeiros/promise-abort.svg)](https://npmjs.com/package/@liviamedeiros/promise-abort)
+[![npm](https://img.shields.io/npm/v/promise-abort.svg)](https://npmjs.com/package/promise-abort)
 
 # promise-abort
 
@@ -7,7 +7,7 @@ Syntax sugar for `AbortError` in promises.
 # Installation
 
 ```console
-$ npm i @liviamedeiros/promise-abort
+$ npm i promise-abort
 ```
 
 `index.min.mjs` is a minified export file for browsers and similar environments.
@@ -15,7 +15,7 @@ $ npm i @liviamedeiros/promise-abort
 # Usage
 
 ```mjs
-import { abortableAsync } from '@liviamedeiros/promise-abort';
+import { abortableAsync } from 'promise-abort';
 
 // sugaring fetch, result is proxied function
 const sweetFetch = abortableAsync(fetch,
@@ -34,7 +34,7 @@ await sweetFetch('https://url.with.long/response/time', {
 ```
 
 ```mjs
-import { abort, inject } from '@liviamedeiros/promise-abort';
+import { abort, inject } from 'promise-abort';
 
 // rough prototype extension
 Promise.prototype.abort = abort;
