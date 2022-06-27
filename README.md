@@ -54,9 +54,14 @@ fetch('https://url.with.long/response/time', {
 
 # Rationale
 
-[`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) and [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) are becoming more and more common, making many async functions effectively cancellable. However, there is no common way to distinguish between abortions and arbitrary exceptions.
+[`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController)
+and [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) are
+becoming more and more common, making many async functions effectively cancellable.
+However, there is no common way to distinguish between abortions and arbitrary exceptions.
 
-In many scenarios, `AbortError` should be handled separately from other errors. Sometimes they should be silently omitted while everything else is carefully handled; sometimes only abortion is handled and errors are falling through.
+In many scenarios, `AbortError` should be handled separately from other errors.
+Sometimes they should be silently omitted while everything else is carefully handled;
+sometimes only abortion is handled and errors are falling through.
 
 This module provides syntax sugar, implicitly handling `AbortError`s.
 
@@ -66,19 +71,27 @@ This module provides syntax sugar, implicitly handling `AbortError`s.
 
 This method might be injected automatically via `inject()` or manually as `abort`.
 
-It can be used in promise chains before any other error handling. `onAbort` might be an unary handler function that receives `AbortError` and returns any value, or directly an arbitrary value. `.abort()` resolves with that value. `undefined` by default.
+It can be used in promise chains before any other error handling.
 
-### `abortableAsync(fn[, onAbort])`
+`onAbort` might be an unary handler function that receives `AbortError`
+and returns any value, or directly an arbitrary value.
+`.abort()` resolves with that value. `undefined` by default.
 
-Decoratorish method, returns Proxy of `fn`. `onAbort` is the same as above: unary handler or fallback value.
+### `abortableAsync(fn[, onAbort[, isAbort]])`
 
-## Trivia
+Decoratorish method, returns Proxy of `fn`.
 
-`abortableAsync` accepts as third parameter an `isAbort(err)` function to determine that error is abort. By default, it checks that `err.name === 'AbortError'`.
+`onAbort` is the same as above: unary handler or fallback value.
 
-`inject` accepts object for assigning as first parameter, property name as second and `isAbort` as third.
+`isAbort(err)` function to determine that error is abort.
+By default, it checks that `err.name === 'AbortError'`.
 
-`abort` is unadjustable.
+### `inject([target[, name[, isAbort]]])`
+
+Defines `abort` as `name` property on `target` object.
+By default, it's `abort` on `Promise.prototype`.
+
+`isAbort(err)` is the same as above.
 
 # License
 
